@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" 
+		/> <constant name="struts.enable.SlashesInActionNames" value="true" /> -->
+
+
+
+	<!-- < constant name="struts.enable.DynamicMethodInvocation" value="false" 
+		/> <constant name="struts.devMode" value="true" /> -->
+
+
+
+
+	<package name="struts2-4" namespace="/"
+		extends="struts-default">
+
+
+
+		<!--全局结果页面，若阿城提哦aaction的返回值相同，所将要到达的页面也相同就可以用这个全局结果页面标签 -->
+		<!-- <global-results> -->
+		<!--页面级别的 转发：dispatcher 重定向：redirect action级别的 转发（请求其他action）：chain 重定向到其他actionredirectAction -->
+		<!-- <result name="login">/login.jsp</result> -->
+		<!-- <result name="login" type="redirectAction">demo</result> -->
+		<!-- </global-results> -->
+
+
+
+
+		<!-- <action name="demo_*" class="cn.zhou.actions.A" method="{1}"> -->			<!-- <result type="redirectAction">index</result> -->
+	<!-- </action> -->
+		<!-- <include file="example.xml" /> -->
+		<!-- Add packages here -->
+
+
+
+		<action name="index_*" class="cn.zhou.actions.A" method="{1}">
+			<!-- <result>/a.jsp</result> -->
+			<result name="login" type="dispatcher">/login.jsp</result>
+		</action>
+
+
+		<action name="login" class="cn.zhou.actions.A" method="login">
+			<result name="login">/success.jsp</result>
+
+		</action>
+
+	</package>
+
+</struts>

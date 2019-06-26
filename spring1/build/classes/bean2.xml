@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<bean name="c3p0"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysq.jdbc.Diver"></property>
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/zhou"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="zhou123"></property>
+
+	</bean>
+
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="c3p0"></property>
+	</bean>
+
+	<bean id="dao"
+		class="cn.zhou.spring.jdbctemplate.annotation.UserDao">
+
+		<!--注入属性name="目标注入类的属性名" ref="被注入类的id值" -->
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+
+	<bean id="service"
+		class="cn.zhou.spring.jdbctemplate.annotation.UserService">
+		<!--注入属性 -->
+		<property name="dao" ref="dao"></property>
+
+	</bean>
+
+</beans>

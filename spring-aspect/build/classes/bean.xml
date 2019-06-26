@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- aop核心配置 -->
+	<bean id="dog" class="cn.zhou.spring.aop.Dog"></bean>
+	<bean id="single" class="cn.zhou.spring.aop.SingleDog"></bean>
+
+	<aop:config>
+		<!-- 切入点的配置 execution(*访问修饰符如：public，private等*表示人任意的 此处有一个空格 类路径.类.方法名如果此处加*则表示所有的方法(..表示方法的参数)) -->
+
+		<aop:pointcut
+			expression="execution(* cn.zhou.spring.aop.Dog.*(..))" id="pc1" />
+
+		<!-- 切入面的配置 切入面：增强其他类的类（材料） -->
+		<aop:aspect ref="single">
+			<aop:before method="test" pointcut-ref="pc1" />
+
+			<aop:after method="after1" pointcut-ref="pc1" />
+
+			<aop:after-throwing method="after2"
+				pointcut-ref="pc1" />
+
+
+			<aop:around method="around" pointcut-ref="pc1" />
+		</aop:aspect>
+
+	</aop:config>
+</beans>

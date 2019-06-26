@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- package="cn.zhou.entity" -->
+<hibernate-mapping>
+
+
+	<class name="cn.zhou.entity.Order" table="hibernate_order">
+		<id name="oid" column="oid">
+
+			<generator class="native"></generator>
+
+			<!-- <generator class="uuid"></generator> -->
+		</id>
+
+
+		<property name="sell" column="sell"></property>
+		<property name="number" column="number"></property>
+
+		<!--外键配置多对一 -->
+		<many-to-one name="goods" column="gid" class="cn.zhou.entity.Goods"></many-to-one>
+
+
+
+	</class>
+
+</hibernate-mapping>

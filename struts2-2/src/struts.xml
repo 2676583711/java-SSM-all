@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!--设置常量之一：post编码，仅仅针对post提交，get提交还需要自行转换编码 -->
+	<!-- <constant name="struts.i18n.encoding" value="UTF-8"></constant> <package 
+		name="test" extends="struts-default" namespace="/"> <action name="test" class="cn.zhou.test.TestAction"> 
+		<result name="exe">/a.jsp</result> </action> <action name="add" class="cn.zhou.test.TestAction" 
+		method="add"> <result name="add">/c.jsp</result> </action> </package> -->
+
+	<package name="struts2-4" extends="struts-default" namespace="/">
+		<action name="add" class="cn.zhou.test.TestAction" method="add">
+			<result name="add">/c.jsp</result>
+		</action>
+
+
+	</package>
+</struts>
+

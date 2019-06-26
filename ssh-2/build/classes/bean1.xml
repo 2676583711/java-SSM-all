@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 本项目取消hibernate的核心配置文件hibernate.cfg.xml,把其中的配置全部移交到spring中进行配置完成 -->
+
+
+
+
+
+	<!--配置hibernateTemplate -->
+	<bean id="ht"
+		class="org.springframework.orm.hibernate5.HibernateTemplate ">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<!-- 开启事物 -->
+	<!--第一步:配置事务管理器 -->
+	<bean id="tx"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<!--第二部：开启事物注解 -->
+	<tx:annotation-driven transaction-manager="tx" />
+
+	<!-- 配置dao -->
+	<bean id="dao" class="cn.zhou.dao.UserDaoImpl">
+		<property name="ht" ref="ht"></property>
+	</bean>
+
+	<!--配置service -->
+	<bean id="service" class="cn.zhou.service.UserService">
+		<property name="dao" ref="dao"></property>
+	</bean>
+
+	<!-- 配置userAction -->
+	<bean id="userAction" class="cn.zhou.action.UserAction"
+		scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+
+	<!--分模块开发，引入其他的配合文件 -->
+	<import resource="classpath:b2.xml" />
+</beans>

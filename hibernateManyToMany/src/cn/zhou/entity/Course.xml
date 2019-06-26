@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- package="cn.zhou.entity" -->
+<hibernate-mapping>
+
+
+	<class name="cn.zhou.entity.Course" table="hibernate_course">
+		<id name="course_id" column="course_id">
+
+			<generator class="native"></generator>
+
+			<!--使用uuid做主键 -->
+			<!-- <generator class="uuid"></generator> -->
+		</id>
+
+
+		<property name="course_name" column="course_name"></property>
+		<property name="pass_score" column="pass_score"></property>
+
+
+
+		<!--外键配置,,多对一 -->
+		<!-- <many-to-one name="goods" column="gid" class="cn.zhou.entity.Goods"></many-to-one> -->
+
+		<!--外键配置，，多对多 -->
+		<set name="studentSet" table="hibernate_student_course" cascade="save-update,delete">
+		
+		
+			<key column="course_id"   ></key>
+
+			<many-to-many class="cn.zhou.entity.Student"
+				column="stu_id"></many-to-many>
+		</set>
+
+
+	</class>
+
+</hibernate-mapping>

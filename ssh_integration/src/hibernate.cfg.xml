@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!--数据库编码 -->
+		<property name="connection.useUnicode">true</property>
+		<property name="connection.characterEncoding">UTF-8</property>
+
+		<!-- 向控制台打印sql语句 -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<!--自动更新数据库 ，此处设值的作用是 表操作，若有该表则插入数据，若没有该表，则创建 -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!--设值数据库方言 -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<!--引入映射文件 -->
+		<mapping resource="cn/zhou/entity/user.hbm.xml" />
+
+
+	</session-factory>
+</hibernate-configuration>
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    
+    <!--使用constant属性设置常量比如 编码。。。。  -->
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<package name="hello" namespace="/" extends="struts-default" >
+	
+		<action name="hello" class="cn.zhou.firstaction.HelloAction">
+			<!-- cn.zhou.firstaction.HelloAction -->
+			
+			<result name="ok">/jsp/a.jsp</result>
+		</action>
+		
+		
+
+	</package>
+	
+	
+	<!--多人开发的时候，使用include标签引入他人的文件，file=文件路径  -->
+	<!-- <include file=""></include> --></struts>

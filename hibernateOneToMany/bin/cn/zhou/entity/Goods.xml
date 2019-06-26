@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- package="cn.zhou.entity" -->
+<hibernate-mapping>
+
+
+	<class name="cn.zhou.entity.Goods" table="hibernate_goods">
+		<id name="gid" column="gid">
+
+			<generator class="native"></generator>
+
+			<!-- <generator class="uuid"></generator> -->
+		</id>
+
+
+		<property name="name" column="name"></property>
+		<property name="price" column="price"></property>
+
+
+
+		<!--使用了cascade=save-update属性之后，就可直接进行级联操作(添加)，后面加上逗号加上delete即可进行级联删除 -->
+		<!--使用inverse=true属性使一对多关系中的一对象放弃维护 inverse="true" -->
+		<set name="orderSet" cascade="save-update,delete" inverse="true">
+
+
+			<key column="gid"></key>
+			<one-to-many class="cn.zhou.entity.Order"></one-to-many>
+		</set>
+
+	</class>
+
+</hibernate-mapping>

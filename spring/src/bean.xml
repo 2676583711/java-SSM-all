@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- scope=“singleton”单实例对象 "prototype"多实例对象 -->
+	<!-- <bean id="user" class="cn.zhou.spring.User" scope="prototype"> -->
+	<!--使用构造函数注入属性值s -->
+	<!-- <constructor-arg name="username" value="张三李四王五"></constructor-arg> -->
+
+
+	<!--使用set方法注入属性 -->
+	<!-- <property name="username" value="天龙八部"> </property> -->
+
+
+	<!-- </bean> -->
+	<!-- <meta key="cacheName" value="foo" /> <property name="name" value="Rick" 
+		/> -->
+
+	<!--复杂属性的注入 比如数组、list、map、property等 -->
+	<bean id="person" class="cn.zhou.spring.Person">
+		<property name="arg">
+			<array>
+				<value>这是</value>
+				<value>太难听</value>
+			</array>
+		</property>
+
+
+		<property name="list">
+			<list>
+				<value>list119</value>
+				<value>list110</value>
+			</list>
+		</property>
+
+
+		<property name="map">
+			<map>
+				<entry key="m1" value="vm1"></entry>
+				<entry key="m2" value="vm2"></entry>
+			</map>
+		</property>
+
+		<!-- <property name="property">
+			<props>
+				<prop key="property1">property123</prop>
+				<prop key="property2">property456789</prop>
+			</props>
+		</property> -->
+
+
+		<property name="p">
+			<props>
+				<prop key="properties1">ps1</prop>
+				<prop key="properties2">perpies2</prop>
+
+			</props>
+		</property>
+
+
+
+	</bean>
+
+
+
+</beans>
